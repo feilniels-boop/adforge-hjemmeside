@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* Limit class scanning to this repo only (avoids crawling the whole Desktop). */
+@source "../app";
+@source "../components";
+@source "../lib";
+@source "../content";
+
+:root {
+  --background: #fafafa;
+  --foreground: #18181b;
+  --muted: #71717a;
+  --surface: #ffffff;
+  --accent: #d97706;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* System stack: avoids Google font fetch on every dev load (often slow in Brave). */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: rgba(251, 191, 36, 0.45);
+  color: #18181b;
+}
+
+/* Infinite horizontal portfolio (inspired by continuous case strips) */
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  width: max-content;
+  animation: marquee-scroll 52s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track-reverse {
+  animation: marquee-scroll 46s linear infinite reverse;
+}
+
+.portfolio-marquee:hover .marquee-track,
+.portfolio-marquee:hover .marquee-track-reverse {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .marquee-track-reverse {
+    animation: none;
+  }
+}
