@@ -16,10 +16,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
+
   return (
     <html lang="da" className="h-full scroll-smooth antialiased">
       <body className="min-h-full bg-zinc-50 font-sans text-zinc-900">
-        <MetaPixel />
+        <MetaPixel pixelId={metaPixelId} />
         {children}
       </body>
     </html>

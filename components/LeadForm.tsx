@@ -6,7 +6,7 @@ import {
   leadSection,
   metaAdsStatusOptions,
 } from "@/content/site";
-import { trackLeadEvent } from "@/lib/meta-pixel";
+import { trackMetaLead } from "@/lib/meta-pixel";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -51,11 +51,8 @@ export function LeadForm() {
         return;
       }
 
-      // Fire Meta Lead only after backend confirms successful submission.
-      trackLeadEvent({
-        source: "lead_form",
-        status: "success",
-      });
+      // Meta Lead only after backend confirms successful submission.
+      trackMetaLead();
 
       setStatus("success");
       form.reset();
