@@ -6,6 +6,7 @@ import {
   leadSection,
   metaAdsStatusOptions,
 } from "@/content/site";
+import { trackLeadEvent } from "@/lib/meta-pixel";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -49,6 +50,13 @@ export function LeadForm() {
         setErrorMessage(data.error ?? "Noget gik galt. Prøv igen.");
         return;
       }
+
+      // Fire Meta Lead only after backend confirms successful submission.
+      trackLeadEvent({
+        source: "lead_form",
+        status: "success",
+      });
+
       setStatus("success");
       form.reset();
     } catch {
