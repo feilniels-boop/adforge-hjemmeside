@@ -29,43 +29,43 @@ export const hero = {
     "Ingen binding. Du modtager preview koncepter med vandmærke, typisk inden for 48 timer.",
 } as const;
 
-/** Hero mock cards: set imageSrc under /public when you have real assets. */
+/** Hero cards shown in the top visual stack. */
 export const heroAdMocks = [
   {
     id: "hero-1",
-    brandLabel: "Belysning",
+    brandLabel: "HAGRO",
     angleLabel: "Produktfordel",
-    hook: "Din lampe gør mere end at lyse",
+    hook: "Lys der samler bordet",
     ctaBadge: "Se koncept",
     accentHue: 42,
-    imageSrc: null as string | null,
+    imageSrc: "/portfolio/pf-02.png" as string | null,
   },
   {
     id: "hero-2",
-    brandLabel: "Hudpleje",
+    brandLabel: "WorkWalk",
     angleLabel: "Problemvinkel",
-    hook: "Træt af hudpleje der ikke kan mærkes?",
+    hook: "Mindre siddetid. Mere gang.",
     ctaBadge: "Få 3 gratis",
-    accentHue: 168,
-    imageSrc: null,
+    accentHue: 145,
+    imageSrc: "/portfolio/pf-18.png",
   },
   {
     id: "hero-3",
-    brandLabel: "Webshop",
+    brandLabel: "Nordic Visual",
     angleLabel: "Tilbudsvinkel",
-    hook: "Et bedre tilbud starter med bedre creatives",
+    hook: "Smart TV. Uden bøvl.",
     ctaBadge: "Se koncept",
-    accentHue: 210,
-    imageSrc: null,
+    accentHue: 200,
+    imageSrc: "/portfolio/pf-07.png",
   },
   {
     id: "hero-4",
-    brandLabel: "DTC",
+    brandLabel: "Buello",
     angleLabel: "Klar besked",
-    hook: "Før kunden køber, skal de forstå hvorfor",
+    hook: "Mere ro i lænden",
     ctaBadge: "Få 3 gratis",
-    accentHue: 280,
-    imageSrc: null,
+    accentHue: 30,
+    imageSrc: "/portfolio/pf-08.png",
   },
 ] as const;
 
