@@ -2,7 +2,6 @@ import { CredibilityStrip } from "@/components/CredibilityStrip";
 import { FAQSection } from "@/components/FAQSection";
 import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
-import { FounderSection } from "@/components/FounderSection";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { LeadForm } from "@/components/LeadForm";
@@ -17,13 +16,12 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <ValuePropositionSection />
         <PortfolioMarquee />
+        <ValuePropositionSection />
         <CredibilityStrip />
         <ProcessSection />
         <LeadForm />
         <PricingSection />
-        <FounderSection />
         <FAQSection />
         <FinalCta />
       </main>

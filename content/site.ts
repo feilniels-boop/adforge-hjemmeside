@@ -19,7 +19,7 @@ export const nav = {
 } as const;
 
 export const hero = {
-  eyebrow: "Lead magnet · 3 gratis static koncepter · typisk inden for 48 timer",
+  eyebrow: "3 gratis static koncepter · inden for 48 timer",
   headline: "Få 3 gratis static koncepter til dit nuværende produkt",
   subheadline:
     "Tilmeld dig med webshop, produkt URL og lidt om dit tilbud. Vi laver tre konkrete annoncekoncepter baseret på det produkt, du sælger nu, så du kan se hook, vinkel og visuel retning før du køber mere.",

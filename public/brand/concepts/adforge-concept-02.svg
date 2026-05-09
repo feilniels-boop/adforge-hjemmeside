@@ -1,0 +1,13 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="420" rx="28" fill="#FAFAFA"/>
+  <g transform="translate(88 100)">
+    <rect x="0" y="0" width="214" height="214" rx="38" fill="#18181B"/>
+    <rect x="36" y="124" width="32" height="54" rx="10" fill="#F59E0B"/>
+    <rect x="84" y="98" width="32" height="80" rx="10" fill="#F59E0B"/>
+    <rect x="132" y="66" width="32" height="112" rx="10" fill="#F59E0B"/>
+    <path d="M154 22L190 22L190 58L176 72L154 72L154 22Z" fill="#F59E0B"/>
+  </g>
+  <text x="360" y="182" fill="#18181B" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="112" font-weight="700" letter-spacing="-2">AdForge</text>
+  <text x="366" y="242" fill="#71717A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="36" font-weight="500" letter-spacing="0.4">Built for performance creatives</text>
+  <text x="84" y="380" fill="#A1A1AA" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22">Concept 02 — forge frame + growth bars (selected)</text>
+</svg>
