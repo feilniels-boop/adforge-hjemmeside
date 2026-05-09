@@ -322,6 +322,42 @@ export const portfolioItems: PortfolioItem[] = [
     imageSrc: "/portfolio/pf-23.png",
     accentHue: 39,
   },
+  {
+    id: "pf-24",
+    brandLabel: "StaticForge",
+    angleLabel: "Produktfordel",
+    hook: "Tre telefon-formater — sneakers, audio og ur",
+    ctaBadge: "—",
+    imageSrc: "/portfolio/pf-24.png",
+    accentHue: 24,
+  },
+  {
+    id: "pf-25",
+    brandLabel: "HydraSerum",
+    angleLabel: "Produktfordel",
+    hook: "Fra produktside til tre square koncepter",
+    ctaBadge: "—",
+    imageSrc: "/portfolio/pf-25.png",
+    accentHue: 88,
+  },
+  {
+    id: "pf-26",
+    brandLabel: "StaticForge",
+    angleLabel: "Problemvinkel",
+    hook: "Headline, benefit og problem/løsning på ét produkt",
+    ctaBadge: "—",
+    imageSrc: "/portfolio/pf-26.png",
+    accentHue: 210,
+  },
+  {
+    id: "pf-27",
+    brandLabel: "StaticForge",
+    angleLabel: "Produktfordel",
+    hook: "Lifestyle, close-up og benefit-layout til samme SKU",
+    ctaBadge: "—",
+    imageSrc: "/portfolio/pf-27.png",
+    accentHue: 215,
+  },
 ];
 
 export const credibility = {

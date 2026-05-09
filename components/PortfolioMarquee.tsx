@@ -1,10 +1,21 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import type { PortfolioItem } from "@/content/site";
 import { portfolioItems, portfolioSection } from "@/content/site";
+import { shuffleArray } from "@/lib/utils";
 import { AdCreativeCard } from "./AdCreativeCard";
 
 const cardShell = "w-[188px] shrink-0 sm:w-[220px] md:w-[236px]";
 
-function MarqueeStrip({ stripKey }: { stripKey: "a" | "b" }) {
-  const row = portfolioItems.map((item) => (
+function MarqueeStrip({
+  stripKey,
+  items,
+}: {
+  stripKey: "a" | "b";
+  items: PortfolioItem[];
+}) {
+  const row = items.map((item) => (
     <div key={`${stripKey}-${item.id}`} className={cardShell}>
       <AdCreativeCard
         brandLabel={item.brandLabel}
@@ -28,7 +39,7 @@ function MarqueeStrip({ stripKey }: { stripKey: "a" | "b" }) {
         className={`flex shrink-0 gap-4 pr-4 sm:gap-5 sm:pr-5 md:gap-6 md:pr-6`}
         aria-hidden
       >
-        {portfolioItems.map((item) => (
+        {items.map((item) => (
           <div key={`${stripKey}-dup-${item.id}`} className={cardShell}>
             <AdCreativeCard
               brandLabel={item.brandLabel}
@@ -48,6 +59,14 @@ function MarqueeStrip({ stripKey }: { stripKey: "a" | "b" }) {
 }
 
 export function PortfolioMarquee() {
+  const [rowA, setRowA] = useState<PortfolioItem[]>(() => [...portfolioItems]);
+  const [rowB, setRowB] = useState<PortfolioItem[]>(() => [...portfolioItems]);
+
+  useEffect(() => {
+    setRowA(shuffleArray(portfolioItems));
+    setRowB(shuffleArray(portfolioItems));
+  }, []);
+
   return (
     <section
       id={portfolioSection.id}
@@ -77,13 +96,13 @@ export function PortfolioMarquee() {
 
         <div className="relative overflow-hidden py-1">
           <div className="marquee-track flex w-max">
-            <MarqueeStrip stripKey="a" />
+            <MarqueeStrip stripKey="a" items={rowA} />
           </div>
         </div>
 
         <div className="relative mt-4 overflow-hidden py-1 sm:mt-5">
           <div className="marquee-track marquee-track-reverse flex w-max">
-            <MarqueeStrip stripKey="b" />
+            <MarqueeStrip stripKey="b" items={rowB} />
           </div>
         </div>
       </div>
