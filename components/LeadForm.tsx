@@ -6,18 +6,28 @@ import {
   leadSection,
   metaAdsStatusOptions,
 } from "@/content/site";
-import { trackMetaLead } from "@/lib/meta-pixel";
+import { fireMetaPixelLeadEvent } from "@/lib/meta-pixel";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function LeadForm() {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  /** Prevents duplicate Lead for one successful submit (e.g. React Strict Mode re-running effects). */
+  const metaLeadEventSentRef = useRef(false);
+
+  useEffect(() => {
+    if (status !== "success") return;
+    if (metaLeadEventSentRef.current) return;
+    metaLeadEventSentRef.current = true;
+    fireMetaPixelLeadEvent();
+  }, [status]);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    metaLeadEventSentRef.current = false;
     setStatus("loading");
     setErrorMessage(null);
     const form = e.currentTarget;
@@ -50,9 +60,6 @@ export function LeadForm() {
         setErrorMessage(data.error ?? "Noget gik galt. Prøv igen.");
         return;
       }
-
-      // Meta Lead only after backend confirms successful submission.
-      trackMetaLead();
 
       setStatus("success");
       form.reset();

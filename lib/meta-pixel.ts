@@ -7,20 +7,15 @@ declare global {
 }
 
 /**
- * Fire standard Lead event only after /api/leads succeeds.
- * Must call exactly: fbq("track", "Lead")
+ * Standard Meta Pixel Lead event. Call only after a lead is successfully
+ * persisted and the UI has moved to the success state (see LeadForm).
+ * Does not fire on click, validation failure, or API errors.
  */
-export function trackMetaLead(): void {
-  if (typeof window === "undefined") return;
-
-  const fbq = window.fbq;
-  if (typeof fbq !== "function") {
-    return;
-  }
-
-  fbq("track", "Lead");
-
-  if (process.env.NODE_ENV === "development") {
-    console.log("Lead fired");
+export function fireMetaPixelLeadEvent(): void {
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("track", "Lead");
+    if (process.env.NODE_ENV === "development") {
+      console.log("Meta Pixel: Lead");
+    }
   }
 }

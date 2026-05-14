@@ -16,7 +16,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
+  const metaPixelId =
+    process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() || "954611720694806";
 
   return (
     <html lang="da" className="h-full scroll-smooth antialiased">
