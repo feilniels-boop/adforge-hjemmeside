@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import type { PortfolioItem } from "@/content/site";
 import { portfolioItems, portfolioSection } from "@/content/site";
-import { shuffleArray } from "@/lib/utils";
+import { orderByBrandAvoidAdjacentCircular } from "@/lib/utils";
 import { AdCreativeCard } from "./AdCreativeCard";
 
 const cardShell = "w-[188px] shrink-0 sm:w-[220px] md:w-[236px]";
@@ -63,8 +63,10 @@ export function PortfolioMarquee() {
   const [rowB, setRowB] = useState<PortfolioItem[]>(() => [...portfolioItems]);
 
   useEffect(() => {
-    setRowA(shuffleArray(portfolioItems));
-    setRowB(shuffleArray(portfolioItems));
+    const order = (items: PortfolioItem[]) =>
+      orderByBrandAvoidAdjacentCircular(items, (item) => item.brandLabel);
+    setRowA(order(portfolioItems));
+    setRowB(order(portfolioItems));
   }, []);
 
   return (
