@@ -18,7 +18,6 @@ export function LeadForm() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    metaLeadEventSentRef.current = false;
     setStatus("loading");
     setErrorMessage(null);
     const form = e.currentTarget;

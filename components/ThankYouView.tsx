@@ -6,7 +6,9 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export function ThankYouView() {
-  const [secondsLeft, setSecondsLeft] = useState(thankYouPage.redirectSeconds);
+  const [secondsLeft, setSecondsLeft] = useState<number>(
+    thankYouPage.redirectSeconds,
+  );
   const metaLeadSentRef = useRef(false);
   const redirectSentRef = useRef(false);
 
