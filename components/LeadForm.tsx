@@ -5,25 +5,16 @@ import {
   biggestChallengeOptions,
   leadSection,
   metaAdsStatusOptions,
+  thankYouPage,
 } from "@/content/site";
-import { fireMetaPixelLeadEvent } from "@/lib/meta-pixel";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export function LeadForm() {
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+  const router = useRouter();
+  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  /** Prevents duplicate Lead for one successful submit (e.g. React Strict Mode re-running effects). */
-  const metaLeadEventSentRef = useRef(false);
-
-  useEffect(() => {
-    if (status !== "success") return;
-    if (metaLeadEventSentRef.current) return;
-    metaLeadEventSentRef.current = true;
-    fireMetaPixelLeadEvent();
-  }, [status]);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -61,8 +52,16 @@ export function LeadForm() {
         return;
       }
 
-      setStatus("success");
+      try {
+        sessionStorage.setItem(
+          thankYouPage.sessionStorageKey,
+          String(Date.now()),
+        );
+      } catch {
+        /* private mode / blocked storage — thank-you page still works, Meta Lead may not qualify */
+      }
       form.reset();
+      router.push(thankYouPage.path);
     } catch {
       setStatus("error");
       setErrorMessage("Kunne ikke sende. Tjek din forbindelse og prøv igen.");
@@ -97,12 +96,7 @@ export function LeadForm() {
           </div>
 
           <div className="rounded-[1.35rem] border-2 border-amber-400/50 bg-white p-6 shadow-xl shadow-zinc-300/50 ring-1 ring-zinc-200/80 sm:p-9">
-            {status === "success" ? (
-              <p className="text-lg leading-relaxed text-zinc-800">
-                {leadSection.successMessage}
-              </p>
-            ) : (
-              <form className="space-y-5" onSubmit={onSubmit}>
+            <form className="space-y-5" onSubmit={onSubmit}>
                 <div>
                   <label
                     htmlFor="name"
@@ -289,7 +283,6 @@ export function LeadForm() {
                   {leadSection.formNote}
                 </p>
               </form>
-            )}
           </div>
         </div>
       </div>
