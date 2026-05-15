@@ -1,7 +1,6 @@
 "use client";
 
 import { brand, thankYouPage } from "@/content/site";
-import { fireMetaPixelLeadEvent } from "@/lib/meta-pixel";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -9,35 +8,7 @@ export function ThankYouView() {
   const [secondsLeft, setSecondsLeft] = useState<number>(
     thankYouPage.redirectSeconds,
   );
-  const metaLeadSentRef = useRef(false);
   const redirectSentRef = useRef(false);
-
-  useEffect(() => {
-    let tsRaw: string | null = null;
-    try {
-      tsRaw = sessionStorage.getItem(thankYouPage.sessionStorageKey);
-    } catch {
-      tsRaw = null;
-    }
-
-    const ts = tsRaw ? Number(tsRaw) : NaN;
-    const fresh =
-      Number.isFinite(ts) &&
-      Date.now() - ts >= 0 &&
-      Date.now() - ts < thankYouPage.sessionMaxAgeMs;
-
-    if (fresh) {
-      try {
-        sessionStorage.removeItem(thankYouPage.sessionStorageKey);
-      } catch {
-        /* ignore */
-      }
-      if (!metaLeadSentRef.current) {
-        metaLeadSentRef.current = true;
-        fireMetaPixelLeadEvent();
-      }
-    }
-  }, []);
 
   useEffect(() => {
     let remaining = thankYouPage.redirectSeconds;

@@ -51,14 +51,6 @@ export function LeadForm() {
         return;
       }
 
-      try {
-        sessionStorage.setItem(
-          thankYouPage.sessionStorageKey,
-          String(Date.now()),
-        );
-      } catch {
-        /* private mode / blocked storage — thank-you page still works, Meta Lead may not qualify */
-      }
       form.reset();
       router.push(thankYouPage.path);
     } catch {
