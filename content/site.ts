@@ -551,7 +551,7 @@ export const thankYouPage = {
   sessionStorageKey: "sf_lead_submitted_at",
   /** Meta Lead and “fresh submit” gate: only counts if user lands on /tak soon after POST. */
   sessionMaxAgeMs: 2 * 60 * 60 * 1000,
-  redirectSeconds: 6,
+  redirectSeconds: 20,
   redirectTo: `/#${pricingSection.id}`,
   headline: "Tak — vi har modtaget det",
   supporting:
